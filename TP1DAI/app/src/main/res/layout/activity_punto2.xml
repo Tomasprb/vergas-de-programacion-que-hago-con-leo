@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="335dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/Contador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese una palabra" />
+
+        <Button
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:text="Checkear"
+            android:onClick="Checkeo"
+            />
+
+
+    </LinearLayout>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Limite de 10 caracteres"
+        android:id="@+id/Limite"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30dp"
+        android:id="@+id/Output"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ir a la activity 3"
+        android:onClick="Activity3"
+        />
+</LinearLayout>

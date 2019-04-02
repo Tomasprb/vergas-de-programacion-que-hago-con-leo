@@ -1,0 +1,41 @@
+.contacto{
+    font-family: Roboto Condensed;
+    font-size: 150%
+}
+
+.parrafo{
+    font-family: Roboto Condensed;
+    font-size: 150%
+}
+.parrafoFoot{
+    font-family: Roboto Condensed;
+    font-size: 100%
+}
+
+.parrafoFooter{
+    font-family: Roboto Condensed;
+    font-size: 150%; 
+}
+.gap-10{
+    width:100%;
+	height:10px;
+}
+.gap-img{
+    width:100%;
+	height:5px;
+}
+.gap-15{
+    width:100%;
+	height:15px;
+}
+.linea{
+    width: 100%;
+    height: 5px; 
+    background-color: aqua
+}
+.fondo{
+    background-color: rgb(27, 25, 25);
+    width: 100%;
+}
+
+

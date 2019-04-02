@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/txtIngreso1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese una palabra"
+        android:textSize="30dp" />
+
+    <EditText
+        android:id="@+id/txtIngreso2"
+        android:layout_width="425dp"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese otra palabra"
+        android:textSize="30dp" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="BotonMostrar"
+        android:text="Mostrar" />
+
+    <TextView
+        android:id="@+id/txtView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consigna A"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/txtView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consigna B"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/txtView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Consigna C"
+        android:textSize="25dp" />
+<Button
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="ir a la activity 2"
+    android:onClick="Activity2"
+/>
+</LinearLayout>
