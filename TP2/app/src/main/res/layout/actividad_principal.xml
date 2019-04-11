@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ActividadPrincipal"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+
+
+        <TextView
+            android:id="@+id/ViewNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/IngresoNombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Ingrese su nombre"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="BotonNombre"
+            android:text="Ingresar" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp">
+
+        <ImageButton
+            android:id="@+id/Imagen1"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_weight="4"
+            android:background="@drawable/descarga"
+            android:scaleType="centerCrop"
+            android:src="@drawable/descarga"
+            android:onClick="btnImagen1"
+            android:layout_margin="10dp"
+            />
+
+        <ImageButton
+            android:id="@+id/Imagen2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/descarga"
+            android:scaleType="centerCrop"
+            android:src="@drawable/descarga"
+            android:onClick="btnImagen2"
+            android:layout_margin="10dp"
+            />
+
+        <ImageButton
+            android:id="@+id/Imagen3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:background="@drawable/descarga"
+            android:scaleType="centerCrop"
+            android:src="@drawable/descarga"
+            android:onClick="btnImagen3"
+            android:layout_margin="10dp"
+            />
+
+    </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+
+        <ImageButton
+            android:id="@+id/Imagen4"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_weight="4"
+            android:background="@drawable/peron"
+            android:scaleType="centerCrop"
+            android:src="@drawable/peron"
+            android:onClick="btnImagen4"
+            android:layout_margin="10dp"
+            />
+        <ImageButton
+            android:id="@+id/Imagen5"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_weight="4"
+            android:background="@drawable/peron"
+            android:scaleType="centerCrop"
+            android:src="@drawable/peron"
+            android:onClick="btnImagen5"
+            android:layout_margin="10dp"
+            />
+        <ImageButton
+            android:id="@+id/Imagen6"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_weight="4"
+            android:background="@drawable/peron"
+            android:scaleType="centerCrop"
+            android:src="@drawable/peron"
+            android:onClick="btnImagen6"
+            android:layout_margin="10dp"
+            />
+    </LinearLayout>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+
+        <ImageButton
+            android:id="@+id/Imagen7"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_weight="4"
+            android:background="@drawable/peron"
+            android:scaleType="centerCrop"
+            android:src="@drawable/peron"
+            android:onClick="btnImagen7"
+            android:layout_margin="10dp"
+            />
+        <ImageButton
+            android:id="@+id/Imagen8"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_weight="4"
+            android:background="@drawable/peron"
+            android:scaleType="centerCrop"
+            android:src="@drawable/descarga"
+            android:onClick="btnImagen8"
+            android:layout_margin="10dp"
+            />
+        <ImageButton
+            android:id="@+id/Imagen9"
+            android:layout_width="wrap_content"
+            android:layout_height="135dp"
+            android:layout_weight="4"
+            android:background="@drawable/peron"
+            android:scaleType="centerCrop"
+            android:src="@drawable/peron"
+            android:onClick="btnImagen9"
+            android:layout_margin="10dp"
+            />
+    </LinearLayout>
+
+
+</LinearLayout>
