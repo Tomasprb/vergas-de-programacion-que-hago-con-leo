@@ -13,7 +13,7 @@ public class ActividadPrincipal extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_principal);
     }
-void BotonNombre(View vista)
+public void BotonNombre(View vista)
 {
     TextView Mitexto;
     EditText MiEdit;
@@ -22,9 +22,22 @@ void BotonNombre(View vista)
     Mitexto.setText("bienvenido "+MiEdit);
 
 }
-
-
-
-
-
+    public void btnImagen1(View vista)
+    {}
+    public void btnImagen2(View vista)
+    {}
+    public void btnImagen3(View vista)
+    {}
+    public void btnImagen4(View vista)
+    {}
+    public void btnImagen5(View vista)
+    {}
+    public void btnImagen6(View vista)
+    {}
+    public void btnImagen7(View vista)
+    {}
+    public void btnImagen8(View vista)
+    {}
+    public void btnImagen9(View vista)
+    {}
 }
