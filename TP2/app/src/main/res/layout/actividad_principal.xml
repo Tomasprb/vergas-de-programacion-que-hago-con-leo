@@ -43,111 +43,106 @@
 
         <ImageButton
             android:id="@+id/Imagen1"
-            android:layout_width="wrap_content"
-            android:layout_height="135dp"
-            android:layout_weight="4"
-            android:background="@drawable/descarga"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
+            android:padding="0dp"
             android:src="@drawable/descarga"
-            android:onClick="btnImagen1"
-            android:layout_margin="10dp"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
 
         <ImageButton
             android:id="@+id/Imagen2"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="@drawable/descarga"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
+            android:padding="0dp"
             android:src="@drawable/descarga"
-            android:onClick="btnImagen2"
-            android:layout_margin="10dp"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
 
         <ImageButton
             android:id="@+id/Imagen3"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_weight="4"
-            android:background="@drawable/descarga"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
+            android:padding="0dp"
             android:src="@drawable/descarga"
-            android:onClick="btnImagen3"
-            android:layout_margin="10dp"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
 
     </LinearLayout>
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <ImageButton
             android:id="@+id/Imagen4"
-            android:layout_width="wrap_content"
-            android:layout_height="135dp"
-            android:layout_weight="4"
-            android:background="@drawable/peron"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/peron"
-            android:onClick="btnImagen4"
-            android:layout_margin="10dp"
+            android:padding="0dp"
+            android:src="@drawable/descarga"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
         <ImageButton
             android:id="@+id/Imagen5"
-            android:layout_width="wrap_content"
-            android:layout_height="135dp"
-            android:layout_weight="4"
-            android:background="@drawable/peron"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/peron"
-            android:onClick="btnImagen5"
-            android:layout_margin="10dp"
+            android:padding="0dp"
+            android:src="@drawable/descarga"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
         <ImageButton
             android:id="@+id/Imagen6"
-            android:layout_width="wrap_content"
-            android:layout_height="135dp"
-            android:layout_weight="4"
-            android:background="@drawable/peron"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/peron"
-            android:onClick="btnImagen6"
-            android:layout_margin="10dp"
+            android:padding="0dp"
+            android:src="@drawable/descarga"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
     </LinearLayout>
-    <LinearLayout android:layout_height="wrap_content" android:layout_width="match_parent">
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
 
         <ImageButton
             android:id="@+id/Imagen7"
-            android:layout_width="wrap_content"
-            android:layout_height="135dp"
-            android:layout_weight="4"
-            android:background="@drawable/peron"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/peron"
-            android:onClick="btnImagen7"
-            android:layout_margin="10dp"
+            android:padding="0dp"
+            android:src="@drawable/descarga"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
         <ImageButton
             android:id="@+id/Imagen8"
-            android:layout_width="wrap_content"
-            android:layout_height="135dp"
-            android:layout_weight="4"
-            android:background="@drawable/peron"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
+            android:padding="0dp"
             android:src="@drawable/descarga"
-            android:onClick="btnImagen8"
-            android:layout_margin="10dp"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
         <ImageButton
             android:id="@+id/Imagen9"
-            android:layout_width="wrap_content"
-            android:layout_height="135dp"
-            android:layout_weight="4"
-            android:background="@drawable/peron"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/peron"
-            android:onClick="btnImagen9"
-            android:layout_margin="10dp"
+            android:padding="0dp"
+            android:src="@drawable/descarga"
+            android:onClick="ApretarBoton"
+            android:layout_margin="7dp"
             />
     </LinearLayout>
 
