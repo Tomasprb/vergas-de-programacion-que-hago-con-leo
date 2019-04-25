@@ -15,11 +15,7 @@
         >
 
 
-        <TextView
-            android:id="@+id/ViewNombre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="invisible" />
+
 
         <EditText
             android:id="@+id/IngresoNombre"
@@ -34,6 +30,19 @@
             android:onClick="BotonNombre"
             android:text="Ingresar" />
 
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/ViewNombre"
+            android:layout_width="229dp"
+            android:layout_height="wrap_content"
+            android:textSize="30dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
@@ -145,6 +154,28 @@
             android:layout_margin="7dp"
             />
     </LinearLayout>
+    <LinearLayout android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="162dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtCaptcha"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="num aqui"
+            android:id="@+id/editCaptcha"
+            android:inputType="number"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="Captcha"
+            android:text="Comprobar"/>
+
+    </LinearLayout>
 
 </LinearLayout>
