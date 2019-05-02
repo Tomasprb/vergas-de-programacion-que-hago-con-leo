@@ -13,6 +13,8 @@ import android.widget.Toast;
 import org.w3c.dom.Text;
 
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ActividadPrincipal extends Activity {
     ImageButton[] AButton;
@@ -20,6 +22,8 @@ public class ActividadPrincipal extends Activity {
     Integer Num1A9=num1.nextInt(10);
     Random num2=new Random();
     Integer Num1A92=num2.nextInt(10);
+    final Timer MiReloj = new Timer();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,7 +89,29 @@ public void BotonNombre(View vista)
                 break;
         }
     }
+    public void Azar(View vista){
+        TimerTask MiTareaARepetir;
+        MiTareaARepetir = new TimerTask() {
+            @Override
+            public void run() {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Random a;
+                        a = new Random();
+                        Integer NR;
+                        NR = a.nextInt(9);
+                        ApretarBoton(AButton[NR]);
+                        if (Victoria(AButton) == true){
+                            MiReloj.cancel();
+                        }
+                    }
+                });
 
+            }
+        };
+        MiReloj.schedule(MiTareaARepetir,0,500);
+    }
     public void CambiarImagen( ImageButton[] Cambio){
         Toast MostrarVictoria;
         String mensaje;
