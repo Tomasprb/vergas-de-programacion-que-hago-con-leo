@@ -65,16 +65,18 @@ ArrayAdapter<String> miAdaptador;
             while(JSONLeido.hasNext()){
                 String nombreElementoActual=JSONLeido.nextName();
                 Log.d("LecturaJSON", "Aca hay algo");
-                if(nombreElementoActual.equals("cantidad de categorias")){
+                if(nombreElementoActual.equals("cantidad_de_categorias")){
                     int cantidadCategorias=JSONLeido.nextInt();
                     Log.d("LecturaJSON", "La cantidad de categorias es: " + cantidadCategorias);
                 }else {
                     JSONLeido.beginArray();
+                    Log.d("LecturaJSON", "array");
                     while(JSONLeido.hasNext()){
                         JSONLeido.beginObject();
+                        Log.d("LecturaJSON", "object");
                         while (JSONLeido.hasNext()) {
                             nombreElementoActual = JSONLeido.nextName();
-                            if (nombreElementoActual.equals("nombre")) {
+                            if (nombreElementoActual.equals("nombre_normalizado")) {
                                 String valorElementoActual = JSONLeido.nextString();
                                 Log.d("LecturaJSON", "Valor leido: " + valorElementoActual);
                                 datosLista.add(valorElementoActual);
@@ -86,7 +88,6 @@ ArrayAdapter<String> miAdaptador;
                     }
                     JSONLeido.endArray();
                 }
-                JSONLeido.skipValue();
             }
             JSONLeido.endObject();
 
