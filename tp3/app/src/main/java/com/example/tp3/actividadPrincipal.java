@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -26,7 +28,7 @@ ArrayAdapter<String> miAdaptador;
 
         datosLista=new ArrayList<>();
         miListaCategorias = findViewById(R.id.ListaVista);
-
+        miListaCategorias.setOnItemClickListener(Escuchador);
         Log.d("AccesoAPI", "Comienzo el proceso");
 
         miAdaptador = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, datosLista);
@@ -103,10 +105,17 @@ ArrayAdapter<String> miAdaptador;
         int posicionSeleccionada;
         posicionSeleccionada = miListView.getSelectedItemPosition();
         Log.d("MiLista", "Posicion seleccionada: " + posicionSeleccionada);
-
         String elementoPosicionSeleccionada;
         elementoPosicionSeleccionada = (String) miListView.getItemAtPosition(posicionSeleccionada);
         Log.d("MiLista", "Elemento en la posicion seleccionada: " + elementoPosicionSeleccionada);
+
         miListView.setVisibility(View.VISIBLE);
     }
+    AdapterView.OnItemClickListener Escuchador = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int posicionSeleccionada, long id) {
+            Log.d("MiLista", "Posicion seleccionada: " + posicionSeleccionada);
+            Log.d("MiLista", "Elemento en la posicion seleccionada: " + miListaCategorias.getItemAtPosition(posicionSeleccionada));
+        }
+    };
 }
