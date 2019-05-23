@@ -20,7 +20,5 @@
         android:onClick="BuscarUbicacion"
         android:text="Buscar por Geolocalizacion en un escenario no euclidiano" />
 
-    <ListView android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:id="@+id/ListaVista"
-        />
+
 </LinearLayout>
