@@ -24,7 +24,6 @@ public class MostrarObjetos extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mostrar_objetos);
-        int posicionSeleccionada;
         miListaObjetos = findViewById(R.id.Objetos);
         Bundle datosRecibidos;
         datosRecibidos = this.getIntent().getExtras();

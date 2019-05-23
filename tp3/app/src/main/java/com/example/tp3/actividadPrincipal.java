@@ -36,5 +36,11 @@ public class actividadPrincipal extends Activity {
 
 
     }
+    public void BuscarNombre (View vista){
+        Intent irABuscarNombre;
+        irABuscarNombre = new Intent(actividadPrincipal.this,BuscarNombre.class);
+        startActivity(irABuscarNombre);
 
+
+    }
 }
