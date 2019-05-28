@@ -43,4 +43,10 @@ public class actividadPrincipal extends Activity {
 
 
     }
+
+    public void BuscarUbicacion (View vista){
+        Intent irABuscarRadio;
+        irABuscarRadio = new Intent(actividadPrincipal.this,BuscarRadio.class);
+        startActivity(irABuscarRadio);
+    }
 }

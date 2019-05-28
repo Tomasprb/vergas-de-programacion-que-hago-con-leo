@@ -1,0 +1,1 @@
+http://epok.buenosaires.gob.ar/reverseGeocoderLugares/?x=-58.398128&y=-34.624380&categorias=centros_de_salud_y_accion_comunitaria,estaciones_de_subte&radio=500
