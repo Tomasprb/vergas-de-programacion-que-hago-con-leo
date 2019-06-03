@@ -9,19 +9,17 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import android.provider.MediaStore;
 
 
 public class MostrarRadio extends Activity {
-    String baseUrl = "https://epok.buenosaires.gob.ar/reverseGeocoderLugares/?x=%s&y=%s&radio=%s&categorias=%s";
-    ArrayList<String> names;
-    ArrayAdapter<String> adapter;
+    ArrayList<String> datosLista;
+    ListView miListaObjetos;
+    ArrayAdapter<String> miAdaptador;
     String categoriaRecibida;
     float Xrecibida;
     float Yrecibida;
@@ -37,96 +35,86 @@ public class MostrarRadio extends Activity {
         Xrecibida = datosRecibidos.getFloat("X");
         Yrecibida = datosRecibidos.getFloat("Y");
         RadioRecibido = datosRecibidos.getInt("Radio");
-
-        names = new ArrayList<>();
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
-
-        (new MostrarRadio.MostrarRadios()).execute();
+        miListaObjetos = findViewById(R.id.LugaresPorUbicacion);
+        datosLista=new ArrayList<>();
+        miAdaptador = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, datosLista);
+        MostrarObjetos.tareaAsincronica miTarea = new MostrarObjetos.tareaAsincronica();
+        miTarea.execute();
     }
-    private class MostrarRadios extends AsyncTask<Void,Void,Void> {
+    public class tareaAsincronica extends AsyncTask<Void,Void,Void> {
         @Override
-        protected Void doInBackground(Void... voids) {
-            URL url;
-            HttpURLConnection cnx;
-            String fullUrl = String.format(baseUrl,Xrecibida,Yrecibida,RadioRecibido,categoriaRecibida.toLowerCase());
-            try {
-                url = new URL(fullUrl);
-                cnx = (HttpURLConnection) url.openConnection();
-                Log.d("EPOK","Cnx");
-                if(cnx.getResponseCode()==200) {
-                    InputStream body;
-                    InputStreamReader reader;
-                    body = cnx.getInputStream();
-                    reader = new InputStreamReader(body,"UTF-8");
-                    streamToJson(reader);
-                } else {
-                    Log.d("EPOK","Code: "+cnx.getResponseCode());
-                    throw new Exception(cnx.getResponseMessage());
+        protected Void doInBackground(Void... voids){
+            try{
+                URL miRuta = new URL("http://epok.buenosaires.gob.ar/reverseGeocoderLugares/?x=" + Xrecibida + "&y=" + Yrecibida + "&categorias=" + categoriaRecibida + "&radio=" + RadioRecibido);
+                HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
+                Log.d("AccesoAPI2","Me conecto");
+                if(miConexion.getResponseCode()==200){
+                    Log.d("AccesoAPI","Me conecto");
+                    InputStream cuerpoRespuesta = miConexion.getInputStream();
+                    InputStreamReader lectorRespuesta = new InputStreamReader(cuerpoRespuesta,"UTF-8");
+                    procesarJSONLeido(lectorRespuesta);
+                } else{
+                    Log.d("AccesoAPI2","Error en la conexion");
                 }
-            } catch (Exception e) {
-                Log.d("EPOK","Error: "+e.getMessage());
+                miConexion.disconnect();
+            }catch(Exception error){
+                Log.d("AccesoAPI2","Hubo un error al conectarme " + error.getMessage());
             }
             return null;
         }
-        protected void onPostExecute(Void v) {
-            super.onPostExecute(v);
 
-            ListView listPlaces;
-            listPlaces = findViewById(R.id.LugaresPorUbicacion);
-            listPlaces.setAdapter(adapter);
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            miListaObjetos.setAdapter(miAdaptador);
+        }
+
+    }
+
+    public void procesarJSONLeido(InputStreamReader streamLeido){
+        JsonReader JSONLeido =new JsonReader(streamLeido);
+        try{
+            JSONLeido.beginObject();
+            while(JSONLeido.hasNext()){
+                String nombreElementoActual=JSONLeido.nextName();
+                Log.d("LecturaJSON2", "Aca hay algo");
+                switch (nombreElementoActual) {
+                    case "totalFull":
+                        int cantidadObjetos=JSONLeido.nextInt();
+                        Log.d("LecturaJSON2", "La cantidad de objetos es: " + cantidadObjetos);
+                        break;
+                    case "instancias":
+                        JSONLeido.beginArray();
+                        Log.d("LecturaJSON2", "array");
+                        while(JSONLeido.hasNext()){
+                            JSONLeido.beginObject();
+                            Log.d("LecturaJSON2", "object");
+                            while (JSONLeido.hasNext()) {
+                                nombreElementoActual = JSONLeido.nextName();
+                                if (nombreElementoActual.equals("headline")) {
+                                    String valorElementoActual = JSONLeido.nextString();
+                                    Log.d("LecturaJSON2", "Valor leido: " + valorElementoActual);
+                                    datosLista.add(valorElementoActual);
+                                } else {
+                                    JSONLeido.skipValue();
+                                }
+                            }
+                            JSONLeido.endObject();
+                        }
+                        JSONLeido.endArray();
+                        break;
+                    default:
+                        JSONLeido.skipValue();
+                        break;
+                }
+
+            }
+            JSONLeido.endObject();
+
+        }catch (Exception error){
+
         }
     }
-    private void streamToJson(InputStreamReader stream) {
-        JsonReader jsonReader;
-        int totalFull;
 
-        jsonReader = new JsonReader(stream);
-        try {
-            jsonReader.beginObject();
-
-            jsonReader.nextName();//totalFull
-            totalFull = jsonReader.nextInt();
-            if(totalFull==0) {
-                noPlacesFound();
-                return;
-            }
-
-            jsonReader.nextName();//clasesEncontradas
-            jsonReader.skipValue();
-
-            jsonReader.nextName();//instancias
-
-            jsonReader.beginArray();
-            for(int i=0;i<totalFull;i++) {
-                jsonReader.beginObject();//one instance
-                jsonReader.nextName();//headline
-                jsonReader.skipValue();
-                jsonReader.nextName();//nombre
-                names.add(jsonReader.nextString());//<---
-                jsonReader.nextName();//claseId
-                jsonReader.skipValue();
-                jsonReader.nextName();//clase
-                jsonReader.skipValue();
-                jsonReader.nextName();//id
-                jsonReader.skipValue();
-                jsonReader.endObject();
-            }
-            jsonReader.endArray();
-
-            jsonReader.nextName();
-            jsonReader.skipValue();
-
-            jsonReader.endObject();
-        } catch (Exception e) {
-            Log.d("Json","Error: "+e.getMessage());
-        }
-    }
-    void noPlacesFound() {
-        TextView categoriesError;
-
-        categoriesError = findViewById(R.id.LugaresPorUbicacionError);
-        categoriesError.setVisibility(View.VISIBLE);
-        Log.d("Json","No places found");
-    }
 }
 
