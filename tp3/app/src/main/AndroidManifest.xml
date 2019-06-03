@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BuscarRadio"></activity>
+        <activity android:name=".MostrarRadio"></activity>
+        <activity android:name=".BuscarRadio" />
         <activity android:name=".BuscarNombre" />
         <activity android:name=".MostrarObjetos" />
         <activity android:name=".BuscarCat" />
