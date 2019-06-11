@@ -1,0 +1,46 @@
+<LinearLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/Lat"
+        android:hint="Ingrese latitud"
+        />
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/Long"
+        android:hint="Ingrese longitud"
+        />
+
+    <TextView
+        android:id="@+id/Radio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Esta barra es el selctor de radio" />
+    <SeekBar
+        android:id="@+id/SelectRadio"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:max="1000"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Progreso"
+        />
+    <EditText
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/Cat"
+        android:hint="Ingrese categoria"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="hey kids want to search by rAdIoUs?"
+        android:onClick="BuscarRad"
+        />
+</LinearLayout>
