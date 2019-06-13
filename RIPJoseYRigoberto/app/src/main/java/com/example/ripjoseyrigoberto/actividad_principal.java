@@ -10,9 +10,10 @@ public class actividad_principal extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_principal);
-
+        /*
         Intent Mapa;
         Mapa= new Intent(this, Mapa.class);
         startActivity(Mapa);
+        */
     }
 }
