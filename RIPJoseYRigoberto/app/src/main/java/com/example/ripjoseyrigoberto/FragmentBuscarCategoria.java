@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -19,7 +20,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class FragmentBuscarCategoria extends Fragment implements View.OnClickListener {
+public class FragmentBuscarCategoria extends Fragment {
     ArrayList<String> datosLista;
     ListView miListaCategorias;
     ArrayAdapter<String> miAdaptador;
@@ -43,7 +44,7 @@ public class FragmentBuscarCategoria extends Fragment implements View.OnClickLis
         miTrauma.execute();
 
         Log.d("algoMuyOriginal", "le asigno el onclick");
-        miListaCategorias.setOnClickListener(this);
+        miListaCategorias.setOnItemClickListener(pesadilla);
 
         Log.d("algoMuyOriginal", "devuelvo la vista gorda");
         return vistaAdevolver;
@@ -106,11 +107,26 @@ public class FragmentBuscarCategoria extends Fragment implements View.OnClickLis
         }catch(Exception error){
             Log.d("AccesoAPI","Hubo un error al conectarme " + error.getMessage());
         }
-    }
-
-    public void onClick(View vistaRecibida){
         Log.d("algoMuyOriginal", "fuera de mi patio niños apestosos");
-
-
     }
+
+    public void MostrarLista(View vista){
+        ListView miListView;
+        miListView=findViewById(R.id.ListaVista);
+        miListView.setAdapter(miAdaptador);
+        int posicionSeleccionada;
+        posicionSeleccionada = miListView.getSelectedItemPosition();
+        Log.d("MiLista", "Posicion seleccionada: " + posicionSeleccionada);
+        String elementoPosicionSeleccionada;
+        elementoPosicionSeleccionada = (String) miListView.getItemAtPosition(posicionSeleccionada);
+        Log.d("MiLista", "Elemento en la posicion seleccionada: " + elementoPosicionSeleccionada);
+
+        miListView.setVisibility(View.VISIBLE);
+    }
+    AdapterView.OnItemClickListener pesadilla = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int posicionSeleccionada, long id) {
+
+        }
+    };
 }
