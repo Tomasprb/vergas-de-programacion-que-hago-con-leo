@@ -23,14 +23,14 @@ public class MostrarTraumas extends Fragment {
     ArrayAdapter<String> adapterPropiedades;
     ListView viewlistaPropiedades;
     String direccion;
+    ActividadPrincipalActivity actividadAnfitriona;
 
     @Override
     public View onCreateView (LayoutInflater infladorDeLayouts, ViewGroup grupoVista, Bundle datos) {
         Log.d("Trauma", "Llegué al mostrardatosobjeto");
         View vistaADevolver;
-        vistaADevolver = infladorDeLayouts.inflate(R.layout.layout_buscar_categoria, grupoVista, false);
+        vistaADevolver = infladorDeLayouts.inflate(R.layout.layout_datos_trauma, grupoVista, false);
         Log.d("Trauma", "Inflé lel layout");
-        ActividadPrincipalActivity actividadAnfitriona;
         actividadAnfitriona = (ActividadPrincipalActivity) getActivity();
         idLugar = actividadAnfitriona.getIdObjetoABuscar();
         Log.d("Trauma", "ID objeto");
@@ -48,7 +48,7 @@ public class MostrarTraumas extends Fragment {
         @Override
         protected Void doInBackground (Void... voids){
             try {
-                URL urlAPI = new URL("http://epok.buenosaires.gob.ar/getObjectContent/?id=" + idLugar);
+                URL urlAPI = new URL(actividadAnfitriona.getRequestListaLugares());
                 Log.d("Trauma", "Se conecto a la URL: " + urlAPI.toString());
                 HttpURLConnection conexionAAPI = (HttpURLConnection) urlAPI.openConnection();
                 if (conexionAAPI.getResponseCode() == 200) {

@@ -39,7 +39,7 @@ public class BuscarCategoria extends Fragment  {
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup grupo, Bundle riachuelo){
         View Zurdito;
-        ActividadPrincipalActivity algo = (ActividadPrincipalActivity) getActivity();
+        algo = (ActividadPrincipalActivity) getActivity();
         geo = algo.getGeo();
         if(geo)
         {
@@ -60,7 +60,7 @@ public class BuscarCategoria extends Fragment  {
         lista.setOnItemClickListener(Escuchador);
         Log.d("Trauma", "Comienzo el proceso");
 
-        miAdaptador = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, datosLista);
+        miAdaptador = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, nombresLista);
 
         miTarea = new BuscarCategoria.tareaAsincronica();
         miTarea.execute();
@@ -136,6 +136,9 @@ public class BuscarCategoria extends Fragment  {
                                 String valorElementoActual = JSONLeido.nextString();
                                 Log.d("Trauma", "Valor leido: " + valorElementoActual);
                                 datosLista.add(valorElementoActual);
+                            } else if (nombreElementoActual.equals("nombre")){
+                                String valorElementoActual = JSONLeido.nextString();
+                                nombresLista.add(valorElementoActual);
                             } else {
                                 JSONLeido.skipValue();
                             }

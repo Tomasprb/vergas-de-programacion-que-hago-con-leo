@@ -68,7 +68,7 @@ public class ActividadPrincipalActivity extends Activity {
     String categoriaSeleccionada;
     String nombreCategoriaSeleccionada;
     String requestListaLugares;
-    ArrayList<Fragment> stackFragments;
+    ArrayList<Fragment> listaFragmentsBack;
     float coordenadaY;
     float coordenadaX;
     int radio;
@@ -78,7 +78,7 @@ public class ActividadPrincipalActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.actividad_principal);
-
+        listaFragmentsBack = new ArrayList<>();
         adminFragments = getFragmentManager();
     }
     public String getIdObjetoABuscar () {
@@ -146,7 +146,17 @@ public class ActividadPrincipalActivity extends Activity {
         transacFragments = adminFragments.beginTransaction();
         transacFragments.replace(R.id.Fragment, fragmentMostrarDatosObjeto);
         transacFragments.commit();
-        stackFragments.add(fragmentMostrarDatosObjeto);
+        listaFragmentsBack.add(fragmentMostrarDatosObjeto);
+    }
+
+    public void MostrarListaObjetos (String idObjeto) {
+        idObjetoABuscar = idObjeto;
+        MostrarListaTraumas fragmentMostrarDatosObjeto;
+        fragmentMostrarDatosObjeto = new MostrarListaTraumas();
+        transacFragments = adminFragments.beginTransaction();
+        transacFragments.replace(R.id.Fragment, fragmentMostrarDatosObjeto);
+        transacFragments.commit();
+        listaFragmentsBack.add(fragmentMostrarDatosObjeto);
     }
     public void irAMostrarListaLugares(String categoria, String nombreCategoria)
     {
@@ -158,16 +168,25 @@ public class ActividadPrincipalActivity extends Activity {
         else
         {
             requestListaLugares = "http://epok.buenosaires.gob.ar/buscar/?texto=" +
-                    nombreCategoriaSeleccionada + "&categoria=" + categoriaSeleccionada;
+                    categoriaSeleccionada + "&categoria=" + categoriaSeleccionada;
 
         }
         Log.d("Trauma", "La request es: " + requestListaLugares);
-        MostrarTraumas ListaTraumas;
-        ListaTraumas = new MostrarTraumas();
+        MostrarListaTraumas ListaTraumas;
+        ListaTraumas = new MostrarListaTraumas();
 
         transacFragments = adminFragments.beginTransaction();
         transacFragments.replace(R.id.Fragment, ListaTraumas);
         transacFragments.commit();
-        stackFragments.add(ListaTraumas);
+        listaFragmentsBack.add(ListaTraumas);
+    }
+
+    @Override
+    public void onBackPressed () {
+        transacFragments = adminFragments.beginTransaction();
+        transacFragments = adminFragments.beginTransaction();
+        transacFragments.replace(R.id.Fragment, listaFragmentsBack.get(listaFragmentsBack.size() - 2));
+        transacFragments.commit();
+        listaFragmentsBack.remove(listaFragmentsBack.get(listaFragmentsBack.size() - 1));
     }
 }
