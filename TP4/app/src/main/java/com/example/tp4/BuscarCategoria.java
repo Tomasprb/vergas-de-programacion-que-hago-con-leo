@@ -35,7 +35,7 @@ public class BuscarCategoria extends Fragment  {
     TextView TextoProgresoRadio;
     boolean geo;
     ActividadPrincipalActivity algo;
-    //Button mostrar;
+
     @Override
     public View onCreateView(LayoutInflater inflador, ViewGroup grupo, Bundle riachuelo){
         View Zurdito;
@@ -58,7 +58,7 @@ public class BuscarCategoria extends Fragment  {
         nombresLista=new ArrayList<>();
         lista=Zurdito.findViewById(R.id.ListaVista);
         lista.setOnItemClickListener(Escuchador);
-        Log.d("AccesoAPI", "Comienzo el proceso");
+        Log.d("Trauma", "Comienzo el proceso");
 
         miAdaptador = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_list_item_1, datosLista);
 
@@ -91,18 +91,18 @@ public class BuscarCategoria extends Fragment  {
             try{
                 URL miRuta = new URL("http://epok.buenosaires.gob.ar/getCategorias");
                 HttpURLConnection miConexion = (HttpURLConnection) miRuta.openConnection();
-                Log.d("AccesoAPI","Me conecto");
+                Log.d("Trauma","Me conecto");
                 if(miConexion.getResponseCode()==200){
-                    Log.d("AccesoAPI","Me conecto");
+                    Log.d("Trauma","Me conecto");
                     InputStream cuerpoRespuesta = miConexion.getInputStream();
                     InputStreamReader lectorRespuesta = new InputStreamReader(cuerpoRespuesta,"UTF-8");
                     procesarJSONLeido(lectorRespuesta);
                 } else{
-                    Log.d("AccesoAPI","Error en la conexion");
+                    Log.d("Trauma","Error en la conexion");
                 }
                 miConexion.disconnect();
             }catch(Exception error){
-                Log.d("AccesoAPI","Hubo un error al conectarme " + error.getMessage());
+                Log.d("Trauma","Hubo un error al conectarme " + error.getMessage());
             }
             return null;
         }
@@ -120,21 +120,21 @@ public class BuscarCategoria extends Fragment  {
             JSONLeido.beginObject();
             while(JSONLeido.hasNext()){
                 String nombreElementoActual=JSONLeido.nextName();
-                Log.d("LecturaJSON", "Aca hay algo");
+                Log.d("Trauma", "Aca hay algo");
                 if(nombreElementoActual.equals("cantidad_de_categorias")){
                     int cantidadCategorias=JSONLeido.nextInt();
-                    Log.d("LecturaJSON", "La cantidad de categorias es: " + cantidadCategorias);
+                    Log.d("Trauma", "La cantidad de categorias es: " + cantidadCategorias);
                 }else {
                     JSONLeido.beginArray();
-                    Log.d("LecturaJSON", "array");
+                    Log.d("Trauma", "array");
                     while(JSONLeido.hasNext()){
                         JSONLeido.beginObject();
-                        Log.d("LecturaJSON", "object");
+                        Log.d("Trauma", "object");
                         while (JSONLeido.hasNext()) {
                             nombreElementoActual = JSONLeido.nextName();
                             if (nombreElementoActual.equals("nombre_normalizado")) {
                                 String valorElementoActual = JSONLeido.nextString();
-                                Log.d("LecturaJSON", "Valor leido: " + valorElementoActual);
+                                Log.d("Trauma", "Valor leido: " + valorElementoActual);
                                 datosLista.add(valorElementoActual);
                             } else {
                                 JSONLeido.skipValue();
@@ -146,10 +146,10 @@ public class BuscarCategoria extends Fragment  {
                 }
             }
             JSONLeido.endObject();
-            Log.d("ProcesarJSON", "Termino de leer el objeto");
+            Log.d("Trauma", "Termino de leer el objeto");
 
         }catch (Exception error){
-            Log.d("LecturaJSON", "Fallo algo. El error fue " + error);
+            Log.d("Trauma", "Muerte al android studio. Error = " + error);
         }
     }
     AdapterView.OnItemClickListener Escuchador = new AdapterView.OnItemClickListener() {
@@ -173,7 +173,7 @@ public class BuscarCategoria extends Fragment  {
                             }
                         };
                         builder = new AlertDialog.Builder(getActivity());
-                        builder.setMessage("Ambas coordenadas deben estar completas");
+                        builder.setMessage("Completar todos los campos");
                         builder.setCancelable(false);
                         builder.setPositiveButton("Aceptar", listenerAdvertencia);
                         builder.setTitle("Advertencia");

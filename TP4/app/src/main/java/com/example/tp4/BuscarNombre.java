@@ -70,12 +70,12 @@ public void onClick (View vistaRecibida) {
         textoIngresado = campoTextoNombre.getText().toString();
         if(textoIngresado.equals(""))
         {
-        Log.d("validar", "Texto vacio");
+        Log.d("Trauma", "Texto vacio");
         advertenciaTextoVacio.show();
         }
         else {
         request += textoIngresado;
-        Log.d("API", "Mando a ejecutar la tarea");
+        Log.d("Trauma", "Mando a ejecutar la tarea");
         miTarea = new TareaAsincronica();
         miTarea.execute();
         }
@@ -85,27 +85,27 @@ private class TareaAsincronica extends AsyncTask<Void, Void, Void>{
     @Override
     protected Void doInBackground(Void... voids){
         try {
-            Log.d("API", "La request es: " + request);
+            Log.d("Trauma", "La request es: " + request);
             URL ruta = new URL(request);
             HttpURLConnection conexion;
             conexion = (HttpURLConnection) ruta.openConnection();
-            Log.d("API", "Me conecto");
+            Log.d("Trauma", "Me conecto");
             if(conexion.getResponseCode()==200)
             {
-                Log.d("API", "Conexion OK");
+                Log.d("Trauma", "Conexion OK");
                 InputStream respuesta;
                 respuesta = conexion.getInputStream();
                 InputStreamReader lectorRespuesta;
                 lectorRespuesta = new InputStreamReader(respuesta, "UTF-8");
                 ProcesarJson(lectorRespuesta);
-                Log.d("API", "Termine de leer");
+                Log.d("Trauma", "Termine de leer");
             }
             else {
-                Log.d("API", "Conexion no OK");
+                Log.d("Trauma", "Conexion no OK");
             }
             conexion.disconnect();
         } catch (Exception error) {
-            Log.d("API", "Error: " + error.getMessage());
+            Log.d("Trauma", "Error: " + error.getMessage());
         }
         return null;
     }
@@ -118,10 +118,10 @@ private class TareaAsincronica extends AsyncTask<Void, Void, Void>{
             listViewObjetos.setVisibility(View.GONE);
         }
         else {
-            Log.d("API", "Muestro la lista");
+            Log.d("Trauma", "Muestro la lista");
             adaptador.notifyDataSetChanged();
             listViewObjetos.setAdapter(adaptador);
-            Log.d("API", "Agregue el adapter");
+            Log.d("Trauma", "Agregue el adapter");
         }
     }
 }
@@ -129,25 +129,25 @@ private class TareaAsincronica extends AsyncTask<Void, Void, Void>{
     private void ProcesarJson(InputStreamReader respuestaLeida){
         JsonReader JotaSONLeido = new JsonReader(respuestaLeida);
         try {
-            Log.d("API", "Empiezo a leer la respuesta JSON");
+            Log.d("Trauma", "Empiezo a leer la respuesta JSON");
             JotaSONLeido.beginObject();
             while (JotaSONLeido.hasNext()){
                 String nombreActual = JotaSONLeido.nextName();
-                Log.d("API", "El elemento actual es: " + nombreActual);
+                Log.d("Trauma", "El elemento actual es: " + nombreActual);
                 if (nombreActual.equals("instancias")) {
                     JotaSONLeido.beginArray();
-                    Log.d("API", "Leo las instancias");
+                    Log.d("Trauma", "Leo las instancias");
                     while (JotaSONLeido.hasNext()) {
                         JotaSONLeido.beginObject();
-                        Log.d("API", "Leo un objeto del array");
+                        Log.d("Trauma", "Leo un objeto del array");
                         while (JotaSONLeido.hasNext()) {
                             nombreActual = JotaSONLeido.nextName();
-                            Log.d("API", "La propiedad de la instancia actual es: " + nombreActual);
+                            Log.d("Trauma", "La propiedad del trauma actual es: " + nombreActual);
                             if (nombreActual.equals("nombre")) {
                                 String nombreObj = JotaSONLeido.nextString();
                                 if(nombreObj.toLowerCase().contains(campoTextoNombre.getText().toString().toLowerCase()))
                                 {
-                                    Log.d("API", "Agrego " + nombreObj);
+                                    Log.d("Trauma", "el nuevo trauma es " + nombreObj);
                                     listaNombres.add(nombreObj);
                                     while (JotaSONLeido.hasNext()) {
                                         nombreActual = JotaSONLeido.nextName();
@@ -178,7 +178,7 @@ private class TareaAsincronica extends AsyncTask<Void, Void, Void>{
             JotaSONLeido.endObject();
         }catch (Exception error)
         {
-            Log.d("API", "ErrorJSON");
+            Log.d("Trauma", "ErrorJSON");
         }
     }
 

@@ -26,21 +26,20 @@ public class MostrarTraumas extends Fragment {
 
     @Override
     public View onCreateView (LayoutInflater infladorDeLayouts, ViewGroup grupoVista, Bundle datos) {
-        Log.d("Debugger", "Llegué al mostrardatosobjeto");
+        Log.d("Trauma", "Llegué al mostrardatosobjeto");
         View vistaADevolver;
         vistaADevolver = infladorDeLayouts.inflate(R.layout.layout_buscar_categoria, grupoVista, false);
-        Log.d("Debugger", "Inflé lel layout");
+        Log.d("Trauma", "Inflé lel layout");
         ActividadPrincipalActivity actividadAnfitriona;
         actividadAnfitriona = (ActividadPrincipalActivity) getActivity();
         idLugar = actividadAnfitriona.getIdObjetoABuscar();
-        Log.d("Debugger", "Obtuve el ID del objeto");
+        Log.d("Trauma", "ID objeto");
         listaTraumas = new ArrayList<>();
         adapterPropiedades = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, listaTraumas);
         TareaAsincronica task = new TareaAsincronica();
-        Log.d("Debugger", "Instancie la tareasincronica");
         viewlistaPropiedades = vistaADevolver.findViewById(R.id.ListaVista);
         task.execute();
-        Log.d("Debugger", "Ejecute la tareaasincronica");
+        Log.d("Trauma", "Ejecute la tareaasincronica");
         return vistaADevolver;
     }
 
@@ -50,10 +49,10 @@ public class MostrarTraumas extends Fragment {
         protected Void doInBackground (Void... voids){
             try {
                 URL urlAPI = new URL("http://epok.buenosaires.gob.ar/getObjectContent/?id=" + idLugar);
-                Log.d("req?", "Se conecto a la URL: " + urlAPI.toString());
+                Log.d("Trauma", "Se conecto a la URL: " + urlAPI.toString());
                 HttpURLConnection conexionAAPI = (HttpURLConnection) urlAPI.openConnection();
                 if (conexionAAPI.getResponseCode() == 200) {
-                    Log.d("API", "Se conecto bien");
+                    Log.d("Trauma", "Se conecto bien");
                     InputStream respuestaAPI;
                     respuestaAPI = conexionAAPI.getInputStream();
                     InputStreamReader lectorRespuesta;
@@ -61,16 +60,16 @@ public class MostrarTraumas extends Fragment {
                     procesarJSON(lectorRespuesta);
                 }
             } catch (Exception e) {
-                Log.d("API", e.toString());
+                Log.d("Trauma", e.toString());
             }
             try {
                 URL miUrl = new URL("http://servicios.usig.buenosaires.gob.ar/normalizar/?direccion=" +
                         direccion + ", caba&geocodificar=true");
-                Log.d("Coord", "rquestCoord: " + "http://servicios.usig.buenosaires.gob.ar/normalizar/?direccion=" +
+                Log.d("Trauma", "rquestCoord: " + "http://servicios.usig.buenosaires.gob.ar/normalizar/?direccion=" +
                         direccion + ", caba&geocodificar=true");
                 HttpURLConnection conexion = (HttpURLConnection) miUrl.openConnection();
                 if(conexion.getResponseCode()==200){
-                    Log.d("API", "Me conecte con la 2da API");
+                    Log.d("Trauma", "Me conecte con la 2da API");
                     InputStream cadenaRespuesta;
                     cadenaRespuesta = conexion.getInputStream();
                     InputStreamReader lectorCadena;
@@ -79,7 +78,7 @@ public class MostrarTraumas extends Fragment {
                 }
             }
             catch (Exception e){
-                Log.d("API", e.toString());
+                Log.d("Trauma", e.toString());
             }
             return null;
         }
@@ -95,42 +94,42 @@ public class MostrarTraumas extends Fragment {
         JsonReader JReader;
         JReader = new JsonReader(lectorRespuesta);
         try {
-            Log.d("Coord", "Empiezo a leer el Json");
+            Log.d("Trauma", "Empiezo el trauma");
             JReader.beginObject();
             while (JReader.hasNext()) {
                 String nombreActual;
                 nombreActual = JReader.nextName();
-                Log.d("Coord", "El nombre actual es: " + nombreActual);
+                Log.d("Trauma", "El nombre actual es: " + nombreActual);
                 if (nombreActual.equals("direccionesNormalizadas"))
                 {
                     JReader.beginArray();
                     while (JReader.hasNext())
                     {
-                        Log.d("Coord", "Estoy en el array");
+                        Log.d("Trauma", "array");
                         JReader.beginObject();
                         while (JReader.hasNext()) {
-                            Log.d("Coord", "Estoy en el object de direcciones");
+                            Log.d("Trauma", "direcciones");
                             nombreActual = JReader.nextName();
-                            Log.d("Coord", "El nombre actual (array) es: " + nombreActual);
+                            Log.d("Trauma", "El nombre actual (array) es: " + nombreActual);
                             if (nombreActual.equals("coordenadas")) {
-                                Log.d("Coord", "Estoy en coordenadas");
+                                Log.d("Trauma", "coordenadas");
                                 JReader.beginObject();
                                 while (JReader.hasNext()) {
                                     nombreActual = JReader.nextName();
-                                    Log.d("Coord", "El nombre actual (coordenadas) es: " + nombreActual);
+                                    Log.d("Trauma", "El nombre actual (coordenadas) es: " + nombreActual);
                                     if (nombreActual.equals("x")) {
-                                        Log.d("Coord", "Estoy en latitud(x)");
+                                        Log.d("Trauma", "latitud");
                                         String coordX = JReader.nextString();
                                         listaTraumas.add("Latitud: " + coordX);
-                                        Log.d("???", "Latitud: " + coordX);
+                                        Log.d("Trauma", "Latitud: " + coordX);
                                     }
                                     else
                                     {
                                         if (nombreActual.equals("y")) {
-                                            Log.d("Coord", "Estoy en longitud(y)");
+                                            Log.d("Trauma", "longitud");
                                             String coordY = JReader.nextString();
                                             listaTraumas.add("Longitud: " + coordY);
-                                            Log.d("???", "Latitud: " + coordY);
+                                            Log.d("Trauma", "Latitud: " + coordY);
                                         }
                                         else
                                         {
@@ -156,61 +155,61 @@ public class MostrarTraumas extends Fragment {
             JReader.endObject();
         }catch (Exception e)
         {
-            Log.d("Coord", "Error JSON");
+            Log.d("Trauma", "Error JSON");
         }
     }
 
     private void procesarJSON (InputStreamReader lectorRespuesta) {
         JsonReader lectorJSON;
         lectorJSON = new JsonReader(lectorRespuesta);
-        Log.d("API", "Declare el JSONReader");
+        Log.d("Trauma", "Declare el JSONReader");
         int contPosicionLista;
         contPosicionLista = 0;
         String nombrePropiedad;
         String datoActual;
         try {
             lectorJSON.beginObject();
-            Log.d("API", "Empece a leer la respuesta");
+            Log.d("Trauma", "Empece a leer la respuesta");
             while (lectorJSON.hasNext()) {
                 nombrePropiedad = lectorJSON.nextName();
-                Log.d("API", "La propiedad actual es " + nombrePropiedad);
+                Log.d("Trauma", "La propiedad actual es " + nombrePropiedad);
                 if (nombrePropiedad.equals("contenido")) {
                     lectorJSON.beginArray();
-                    Log.d("API", "Empece a leer el array");
+                    Log.d("Trauma", "Empece a leer el array");
                     while (lectorJSON.hasNext()) {
                         lectorJSON.beginObject();
-                        Log.d("API", "Empece a leer un objeto");
+                        Log.d("Trauma", "Empece a leer un objeto");
                         while (lectorJSON.hasNext())
                         {
                             nombrePropiedad = lectorJSON.nextName();
-                            Log.d("API", "La propiedad actual es " + nombrePropiedad);
+                            Log.d("Trauma", "La propiedad actual es " + nombrePropiedad);
                             switch (nombrePropiedad) {
                                 case "nombre":
                                     datoActual = lectorJSON.nextString();
 
                                             listaTraumas.add(datoActual);
-                                            Log.d("API", "Agregue un dato a la lista. El valor actual de la posicion es " + listaTraumas.get(contPosicionLista));
+                                            Log.d("Trauma", "Agregue un dato a la lista. El valor actual de la posicion es " + listaTraumas.get(contPosicionLista));
 
 
                                     break;
                                 case "valor":
                                     datoActual = lectorJSON.nextString();
                                         listaTraumas.set(contPosicionLista, listaTraumas.get(contPosicionLista) + ": " + datoActual);
-                                        Log.d("API", "Agregue un dato a la lista. El valor actual de la posicion es " + listaTraumas.get(contPosicionLista));
+                                        Log.d("Trauma", "Agregue un dato a la lista. El valor actual de la posicion es " + listaTraumas.get(contPosicionLista));
                                         contPosicionLista++;
 
                                     break;
                                 default:
                                     lectorJSON.skipValue();
-                                    Log.d("API", "Saltee un valor");
+                                    Log.d("Trauma", "Saltee un valor");
                                     break;
                             }
                         }
                         lectorJSON.endObject();
-                        Log.d("API", "Termine un objeto");
+                        Log.d("Trauma", "Termine un objeto");
                     }
                     lectorJSON.endArray();
-                    Log.d("API", "Termine el array");
+                    Log.d("Trauma", "Termine el array");
                 }else {
                     if (nombrePropiedad.equals("direccionNormalizada"))
                     {
@@ -218,15 +217,15 @@ public class MostrarTraumas extends Fragment {
                     }
                     else {
                         lectorJSON.skipValue();
-                        Log.d("API", "Saltee un valor");
+                        Log.d("Trauma", "Saltee un valor");
                     }
                 }
             }
             lectorJSON.endObject();;
-            Log.d("API", "Termine de leer el JSON");
+            Log.d("Trauma", "Termine de leer el JSON");
 
         } catch (Exception e) {
-            Log.d("API", "Fallo el JSON");
+            Log.d("Trauma", "muerte al JSON");
         }
     }
 }

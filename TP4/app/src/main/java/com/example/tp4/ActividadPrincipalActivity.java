@@ -161,7 +161,7 @@ public class ActividadPrincipalActivity extends Activity {
                     nombreCategoriaSeleccionada + "&categoria=" + categoriaSeleccionada;
 
         }
-        Log.d("API", "La request es: " + requestListaLugares);
+        Log.d("Trauma", "La request es: " + requestListaLugares);
         MostrarTraumas ListaTraumas;
         ListaTraumas = new MostrarTraumas();
 
