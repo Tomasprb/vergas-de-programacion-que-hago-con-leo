@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Coordenada X"
+        android:id="@+id/coordenadaX"
+        android:inputType="numberDecimal|numberSigned"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Coordenada Y"
+        android:id="@+id/coordenadaY"
+        android:inputType="numberDecimal|numberSigned"/>
+    <SeekBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="1000"
+        android:id="@+id/Radio"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Radio: 0m"
+        android:id="@+id/ProgresoRadio"/>
+
+
+    <ListView android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:id="@+id/ListaVista"
+        />
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Ingrese su busqueda"
+        android:id="@+id/TextoBuscar"
+        />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        android:id="@+id/btnBuscarNombre"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Estimado sr. nabo, lamentamos informarle que el nombre ingresado no existe, por favor utilize su bol de gelatina por primera vez en su vida e ingrese un nombre existente"
+        android:id="@+id/nabo"
+        android:visibility="gone"/>
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ListaObjetos">
+    </ListView>
+</LinearLayout>
