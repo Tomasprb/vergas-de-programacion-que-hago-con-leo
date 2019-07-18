@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Escriba aqui"
+        android:textSize="12pt"
+        android:id="@+id/textSearch"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchType">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Busqueda general"
+            android:id="@+id/searchGeneral"/>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Busqueda por ID/Titulo"
+            android:id="@+id/searchId"/>
+    </RadioGroup>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        android:id="@+id/doSearch"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/showError"
+        android:background="#FF0000"
+        android:textColor="#FFFFFF"
+        android:textSize="11pt"
+        android:text="Complete Todos Los Datos"
+        android:textAlignment="center"
+        android:visibility="gone"/>
+</LinearLayout>
